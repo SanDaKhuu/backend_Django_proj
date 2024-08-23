@@ -1,0 +1,177 @@
+{% extends "base.html" %} {% block start %}
+
+<link
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<style>
+  .text {
+    color: green;
+    font-weight: bold;
+  }
+</style>
+
+<div class="container mt-5">
+  <form
+    class="col-6 mx-auto card p-3 shadow-lg"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
+    <h2 class="text text-center">My Data</h2>
+    <br />
+    <h3>Add New Data</h3>
+    <hr />
+    <div class="form-group">
+      <label for="timestamp">Time Stamp</label>
+      <input name="time_stamp" type="text" class="form-control" required />
+    </div>
+    <div class="form-group">
+      <label for="sipcallingparty">Sip Calling Party</label>
+      <input
+        name="sip_calling_party"
+        type="text"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="sipcalledparty">Sip Called Party</label>
+      <input
+        name="sip_called_party"
+        type="text"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="sipcallduration">Sip Call Duration</label>
+      <input
+        name="sip_call_duration"
+        type="text"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="sipcallstatus">Sip Call Status</label>
+      <input name="sip_call_status" type="text" class="form-control" required />
+    </div>
+    <div class="form-group">
+      <label for="siprtpl4srcport">Sip Rtp L4 Src Port</label>
+      <input
+        name="sip_rtp_l4_src_port"
+        type="text"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="siprtpl4dstport">Sip Rtp L4 Dst Port</label>
+      <input
+        name="sip_rtp_l4_dst_port"
+        type="text"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="rtpinjitter">Rtp In Jitter</label>
+      <input name="rtp_in_jitter" type="text" class="form-control" required />
+    </div>
+    <div class="form-group">
+      <label for="rtpinmos">Rtp In Mos</label>
+      <input name="rtp_in_mos" type="text" class="form-control" required />
+    </div>
+    <div class="form-group">
+      <label for="pktlossper">Pkt Loss Per</label>
+      <input name="pkt_loss_per" type="text" class="form-control" required />
+    </div>
+    <div class="form-group">
+      <label for="sipcallingreg">Sip Calling Reg</label>
+      <input name="sip_calling_reg" type="text" class="form-control" required />
+    </div>
+    <div class="form-group">
+      <label for="sipcalledreg">Sip Called Reg</label>
+      <input name="sip_called_reg" type="text" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-success">Add New Data</button>
+  </form>
+
+  <hr />
+  <div class="class mt-5">
+    <form action="">
+      <div class="container">
+        <div class="form-group col-md-12">
+          <label for="exampleInputEmail1">Search Data</label>
+
+          <div class="row">
+            <div class="col-md-6">
+              <input name="search" type="text" class="form-control" />
+            </div>
+            <div class="col-md-6">
+              <button type="submit" class="btn btn-primary">Search</button>
+              <a href="/import_data" class="btn btn-success float-right"
+                >Import JSON File</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container h-100 d-flex align-items-center justify-content-center">
+  <table class="table mt-5">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Time Stamp</th>
+        <th scope="col">Sip Calling Value</th>
+        <th scope="col">Sip Calling IP Address</th>
+        <th scope="col">Sip Called Value</th>
+        <th scope="col">Sip Called IP Address</th>
+        <th scope="col">Sip Call Duration</th>
+        <th scope="col">Sip Call Status</th>
+        <th scope="col">Sip Rtp L4 Src Port</th>
+        <th scope="col">Sip Rtp L4 Dst Port</th>
+        <th scope="col">Rtp In Jitter</th>
+        <th scope="col">Rtp In Mos</th>
+        <th scope="col">Pkt Loss Per</th>
+        <th scope="col">Sip Calling Reg</th>
+        <th scope="col">Sip Called Reg</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{book.time_stamp}}</td>
+        <td>{{book.sip_calling_party|slice:"5:9"}}</td>
+        <td>{{book.sip_calling_party|slice:"10:-1"}}</td>
+        <td>{{book.sip_called_party|slice:"5:9"}}</td>
+        <td>{{book.sip_called_party|slice:"10:-1"}}</td>
+        <td>{{book.sip_call_duration}}</td>
+        <td>{{book.sip_call_status}}</td>
+        <td>{{book.sip_rtp_l4_src_port}}</td>
+        <td>{{book.sip_rtp_l4_dst_port}}</td>
+        <td>{{book.rtp_in_jitter}}</td>
+        <td>{{book.rtp_in_mos}}</td>
+        <td>{{book.pkt_loss_per}}</td>
+        <td>{{book.sip_calling_reg}}</td>
+        <td>{{book.sip_called_reg}}</td>
+        <td>
+          <a href="/delete_book/{{book.id }}" class="btn btn-danger m-2"
+            >Delete</a
+          >
+          <a href="/update_book/{{book.id }}" class="btn btn-success">Update</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

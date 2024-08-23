@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block start %}
+
+<link
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<style>
+  .text {
+    color: green;
+    font-weight: bold;
+  }
+</style>
+
+<div class="container mt-5">
+  <form
+    class="col-6 mx-auto card p-3 shadow-lg"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
+    <h2 class="text text-center">My Data</h2>
+    <br />
+    <h3>Import JSON Data</h3>
+    <hr />
+    <input type="file" name="json_file" required />
+    <br />
+    <div class="row">
+      &nbsp;&nbsp;&nbsp;
+      <button type="submit" class="btn btn-success col-6">Import</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="/" class="btn btn-success col-5">Back to Home</a>
+    </div>
+  </form>
+</div>
+
+{% endblock %}
