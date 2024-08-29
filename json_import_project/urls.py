@@ -7,6 +7,7 @@ router = routers.DefaultRouter()
 router.register(r'books', BookView, 'book')
 
 urlpatterns = [
+    # route, view
     path('admin/', admin.site.urls),
 
     path('', books),    

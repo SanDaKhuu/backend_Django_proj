@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'book',
     'rest_framework',
+    'django_filters',
     'corsheaders'
 ]
 
@@ -57,7 +58,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': 
         [   
             'rest_framework.permissions.AllowAny'
-        ]
+        ],
+        'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
     }
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -136,6 +138,12 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3000',
+    'http://*.127.0.0.1',
+    'http://localhost:8000'
+]
+
 CORS_ORIGIN_WHITELIST = [
-     'http://localhost:3000'
+     'http://localhost:3000',
 ]

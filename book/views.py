@@ -6,6 +6,8 @@ from .models import Book
 import json
 from rest_framework import generics,viewsets
 from .serializers import BookSerializer
+from rest_framework import filters
+
 #from rest_framework.views import APIView
 #from rest_framework.response import Response 
 
@@ -20,7 +22,7 @@ def rest_get_books(request):
 
     if request.GET.get('search'):
         queryset = queryset.filter(
-            title__icontains=request.GET.get('search'))
+            sip_calling_reg__icontains=request.GET.get('search'))
 
     data = serializers.serialize('json', queryset)
     return HttpResponse(data, content_type='application/json')
@@ -79,7 +81,7 @@ def books(request):
 
     if request.GET.get('search'):
         queryset = queryset.filter(
-            title__icontains=request.GET.get('search'))
+            sip_calling_reg__icontains=request.GET.get('search'))
 
     context = {'books': queryset}
     return render(request, 'books.html', context)
@@ -279,3 +281,5 @@ def update_book(request, id):
 class BookView(viewsets.ModelViewSet):
     serializer_class = BookSerializer
     queryset = Book.objects.all()
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['sip_calling_reg']

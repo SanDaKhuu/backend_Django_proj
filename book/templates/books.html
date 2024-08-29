@@ -96,9 +96,21 @@
       <input name="sip_called_reg" type="text" class="form-control" required />
     </div>
 
-    <button type="submit" class="btn btn-success">Add New Data</button>
-  </form>
+    <div class="row">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="col-md-1"></div>
+      <button type="submit" class="btn btn-success col-md-4">
+        Add New Data
+      </button>
+      <div class="col-md-1"></div>
 
+      <a href="/import_data" class="btn btn-success col-md-4"
+        >Import JSON File</a
+      >
+      <div class="col-md-1"></div>
+    </div>
+  </form>
+  <br />
   <hr />
   <div class="class mt-5">
     <form action="">
@@ -112,9 +124,6 @@
             </div>
             <div class="col-md-6">
               <button type="submit" class="btn btn-primary">Search</button>
-              <a href="/import_data" class="btn btn-success float-right"
-                >Import JSON File</a
-              >
             </div>
           </div>
         </div>
